@@ -1,0 +1,540 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="UpdateChart_PE" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_PE_Constitutional" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Constitutional_GeneralApearence" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Constitutional_Levelofdistress" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Constitutional_Ambulation" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_PSYCH" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_PSYCH_Insight" Type="InArgument(x:String)" />
+    <x:Property Name="in_Neck" Type="InArgument(x:String)" />
+    <x:Property Name="in_Neck_Neck" Type="InArgument(x:String)" />
+    <x:Property Name="in_Neck_LymphNotes" Type="InArgument(x:String)" />
+    <x:Property Name="in_Neck_Thyroid" Type="InArgument(x:String)" />
+    <x:Property Name="in_Cardiovascular" Type="InArgument(x:String)" />
+    <x:Property Name="in_Cardiovascular_ApicalImpulse" Type="InArgument(x:String)" />
+    <x:Property Name="in_Cardiovascular_Heart" Type="InArgument(x:String)" />
+    <x:Property Name="in_CardioVascular_Neck" Type="InArgument(x:String)" />
+    <x:Property Name="in_Cardiovascular_Pulses" Type="InArgument(x:String)" />
+    <x:Property Name="in_Respiratory" Type="InArgument(x:String)" />
+    <x:Property Name="in_Abdomen" Type="InArgument(x:String)" />
+    <x:Property Name="in_Abdomen_Bowel" Type="InArgument(x:String)" />
+    <x:Property Name="in_Abdomen_Bowel_RUQ" Type="InArgument(x:String)" />
+    <x:Property Name="in_Abdomen_Bowel_RLQ" Type="InArgument(x:String)" />
+    <x:Property Name="in_Abdomen_Bowel_LLQ" Type="InArgument(x:String)" />
+    <x:Property Name="in_Abdomen_Bowel_LUQ" Type="InArgument(x:String)" />
+    <x:Property Name="in_Abdomen_Inspection" Type="InArgument(x:String)" />
+    <x:Property Name="in_Abdomen_Liver" Type="InArgument(x:String)" />
+    <x:Property Name="in_Abdomen_Spleen" Type="InArgument(x:String)" />
+    <x:Property Name="in_Abdomen_Hernia" Type="InArgument(x:String)" />
+    <x:Property Name="in_MaleFemale_GU" Type="InArgument(x:String)" />
+    <x:Property Name="in_MaleFemale_GUExam" Type="InArgument(x:String)" />
+    <x:Property Name="in_MaleFemale_Penis" Type="InArgument(x:String)" />
+    <x:Property Name="in_MaleFemale_Scrotum" Type="InArgument(x:String)" />
+    <x:Property Name="in_MaleFemale_Testes" Type="InArgument(x:String)" />
+    <x:Property Name="in_MaleFemale_Prostate" Type="InArgument(x:String)" />
+    <x:Property Name="in_Musculo" Type="InArgument(x:String)" />
+    <x:Property Name="in_Musculo_Motor" Type="InArgument(x:String)" />
+    <x:Property Name="in_Musculo_Joints" Type="InArgument(x:String)" />
+    <x:Property Name="in_Musculo_Extremeties" Type="InArgument(x:String)" />
+    <x:Property Name="in_Skin" Type="InArgument(x:String)" />
+    <x:Property Name="in_Skin_Nails" Type="InArgument(x:String)" />
+    <x:Property Name="in_Skin_Inspection" Type="InArgument(x:String)" />
+    <x:Property Name="in_Back" Type="InArgument(x:String)" />
+    <x:Property Name="in_Back_Tharo" Type="InArgument(x:String)" />
+    <x:Property Name="in_Neuro" Type="InArgument(x:String)" />
+    <x:Property Name="in_Neuro_gait" Type="InArgument(x:String)" />
+    <x:Property Name="in_Neuro_Cranial" Type="InArgument(x:String)" />
+    <x:Property Name="in_Neuro_Sensation" Type="InArgument(x:String)" />
+    <x:Property Name="in_Neuro_Reflexes" Type="InArgument(x:String)" />
+    <x:Property Name="in_Neuro_Coordination" Type="InArgument(x:String)" />
+    <x:Property Name="in_Psych_MentalStatus" Type="InArgument(x:String)" />
+    <x:Property Name="in_Psych_Orientation" Type="InArgument(x:String)" />
+    <x:Property Name="in_Psych_Memory" Type="InArgument(x:String)" />
+    <x:Property Name="in_BrowserObject" Type="InArgument(ui:Browser)" />
+    <x:Property Name="in_Gender" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_GUFemale" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_GUFemale_External" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_GUFemaleVagina" Type="InArgument(x:String)" />
+    <x:Property Name="in_GUFemale_Cervix" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_GUFemale_Utreus" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_GUFemale_Adnexae" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_GUFemale_Bladder" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Head" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Head_Head" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Lungs" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Lungs_Respi" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Lungs_Percussion" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Lungs_Auscultation" Type="InArgument(x:String)" />
+    <x:Property Name="in_Breast" Type="InArgument(x:String)" />
+    <x:Property Name="in_Breast_Breast" Type="InArgument(x:String)" />
+    <x:Property Name="in_Rectal" Type="InArgument(x:String)" />
+    <x:Property Name="in_Rectal_Rectal" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_ENMT" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_ENMT_Ears" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_ENMT_Nose" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_ENMT_Lips" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_ENMT_Heering" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_ENMT_Oropharynx" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Eyes" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Eyes_Lids" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Eyes_Cornea" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Eyes_Pupils" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Eyes_Fundoscopic" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Eyes_EOM" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Eyes_Lens" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Eyes_Sclrae" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Eyes_Vision" Type="InArgument(x:String)" />
+  </x:Members>
+  <this:UpdateChart_PE.in_PE_GUFemale>
+    <InArgument x:TypeArguments="x:String" />
+  </this:UpdateChart_PE.in_PE_GUFemale>
+  <this:UpdateChart_PE.in_PE_GUFemale_External>
+    <InArgument x:TypeArguments="x:String" />
+  </this:UpdateChart_PE.in_PE_GUFemale_External>
+  <this:UpdateChart_PE.in_PE_GUFemaleVagina>
+    <InArgument x:TypeArguments="x:String" />
+  </this:UpdateChart_PE.in_PE_GUFemaleVagina>
+  <this:UpdateChart_PE.in_GUFemale_Cervix>
+    <InArgument x:TypeArguments="x:String" />
+  </this:UpdateChart_PE.in_GUFemale_Cervix>
+  <this:UpdateChart_PE.in_PE_GUFemale_Utreus>
+    <InArgument x:TypeArguments="x:String" />
+  </this:UpdateChart_PE.in_PE_GUFemale_Utreus>
+  <this:UpdateChart_PE.in_PE_GUFemale_Adnexae>
+    <InArgument x:TypeArguments="x:String" />
+  </this:UpdateChart_PE.in_PE_GUFemale_Adnexae>
+  <this:UpdateChart_PE.in_PE_GUFemale_Bladder>
+    <InArgument x:TypeArguments="x:String" />
+  </this:UpdateChart_PE.in_PE_GUFemale_Bladder>
+  <this:UpdateChart_PE.in_PE_Head>
+    <InArgument x:TypeArguments="x:String" />
+  </this:UpdateChart_PE.in_PE_Head>
+  <this:UpdateChart_PE.in_PE_Head_Head>
+    <InArgument x:TypeArguments="x:String" />
+  </this:UpdateChart_PE.in_PE_Head_Head>
+  <this:UpdateChart_PE.in_PE_Lungs>
+    <InArgument x:TypeArguments="x:String" />
+  </this:UpdateChart_PE.in_PE_Lungs>
+  <this:UpdateChart_PE.in_PE_Lungs_Respi>
+    <InArgument x:TypeArguments="x:String" />
+  </this:UpdateChart_PE.in_PE_Lungs_Respi>
+  <this:UpdateChart_PE.in_PE_Lungs_Percussion>
+    <InArgument x:TypeArguments="x:String" />
+  </this:UpdateChart_PE.in_PE_Lungs_Percussion>
+  <this:UpdateChart_PE.in_PE_Lungs_Auscultation>
+    <InArgument x:TypeArguments="x:String" />
+  </this:UpdateChart_PE.in_PE_Lungs_Auscultation>
+  <this:UpdateChart_PE.in_Breast>
+    <InArgument x:TypeArguments="x:String" />
+  </this:UpdateChart_PE.in_Breast>
+  <this:UpdateChart_PE.in_Breast_Breast>
+    <InArgument x:TypeArguments="x:String" />
+  </this:UpdateChart_PE.in_Breast_Breast>
+  <this:UpdateChart_PE.in_Rectal>
+    <InArgument x:TypeArguments="x:String" />
+  </this:UpdateChart_PE.in_Rectal>
+  <this:UpdateChart_PE.in_Rectal_Rectal>
+    <InArgument x:TypeArguments="x:String" />
+  </this:UpdateChart_PE.in_Rectal_Rectal>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1153.6,3912</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>UpdateChart_PE_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Testing.Activities</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Cryptography</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="UpdateChart_PE" sap:VirtualizedContainerService.HintSize="1164,3847.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1101.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Start Updating Patient Physical Exam&quot;]" />
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[in_BrowserObject]" BrowserType="Chrome" DisplayName="Attach Browser 'PE'" sap:VirtualizedContainerService.HintSize="1101.6,3469.6" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="b99adffcde0c70f1b21258370659ed04">
+      <ui:BrowserScope.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+          </ActivityAction.Argument>
+          <Sequence sap:VirtualizedContainerService.HintSize="1068,3322.4" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Sequence DisplayName="Select PE" sap:VirtualizedContainerService.HintSize="1005.6,83.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" AlterIfDisabled="True" ClickType="CLICK_SINGLE" DisplayName="Click 'PE'" sap:VirtualizedContainerService.HintSize="387.2,107.2" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
+                <ui:Click.CursorPosition>
+                  <ui:CursorPosition Position="Center">
+                    <ui:CursorPosition.OffsetX>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:CursorPosition.OffsetX>
+                    <ui:CursorPosition.OffsetY>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:CursorPosition.OffsetY>
+                  </ui:CursorPosition>
+                </ui:Click.CursorPosition>
+                <ui:Click.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="72cdb931-1e9b-4643-9848-aa0ddc29939c" InformativeScreenshot="fab9d3f7e5b116a2a9686fce25d6f653" Selector="&lt;webctrl id='GlobalWrapper' tag='IFRAME' /&gt;&lt;webctrl id='frameContent' tag='FRAME' /&gt;&lt;webctrl id='frMain' tag='IFRAME' /&gt;&lt;webctrl tag='SPAN' aaname='PE' /&gt;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:Click.Target>
+              </ui:Click>
+              <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" AlterIfDisabled="True" ClickType="CLICK_SINGLE" DisplayName="Click ' PE BUTTON'" sap:VirtualizedContainerService.HintSize="387.2,107.2" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
+                <ui:Click.CursorPosition>
+                  <ui:CursorPosition Position="Center">
+                    <ui:CursorPosition.OffsetX>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:CursorPosition.OffsetX>
+                    <ui:CursorPosition.OffsetY>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:CursorPosition.OffsetY>
+                  </ui:CursorPosition>
+                </ui:Click.CursorPosition>
+                <ui:Click.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="333da08a-2d9c-4eda-8fcf-39df690ef509" InformativeScreenshot="fc8623fd39b951fbff8cd45265482537" Selector="&lt;webctrl id='GlobalWrapper' tag='IFRAME' /&gt;&lt;webctrl id='frameContent' tag='FRAME' /&gt;&lt;webctrl id='frMain' tag='IFRAME' /&gt;&lt;webctrl parentname='PE' tag='BUTTON' class='icon clickable icon-streamlined-add ' idx='1' /&gt;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:Click.Target>
+              </ui:Click>
+              <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Type Into 'General Adult Exam'" EmptyField="True" sap:VirtualizedContainerService.HintSize="387.2,135.2" sap2010:WorkflowViewState.IdRef="TypeInto_1" SimulateType="False" Text="General Adult Exam">
+                <ui:TypeInto.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="2e6af951-5fa9-48e7-983a-fc35c1164ddc" InformativeScreenshot="05ec92a0d66a8700ed1da505c3ad1082" Selector="&lt;webctrl id='GlobalWrapper' tag='IFRAME' /&gt;&lt;webctrl id='frameContent' tag='FRAME' /&gt;&lt;webctrl id='frMain' tag='IFRAME' /&gt;&lt;webctrl tag='INPUT' /&gt;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:TypeInto.Target>
+              </ui:TypeInto>
+              <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" AlterIfDisabled="True" ClickType="CLICK_SINGLE" DisplayName="Click 'General Adult Exam'" sap:VirtualizedContainerService.HintSize="387.2,107.2" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
+                <ui:Click.CursorPosition>
+                  <ui:CursorPosition Position="Center">
+                    <ui:CursorPosition.OffsetX>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:CursorPosition.OffsetX>
+                    <ui:CursorPosition.OffsetY>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:CursorPosition.OffsetY>
+                  </ui:CursorPosition>
+                </ui:Click.CursorPosition>
+                <ui:Click.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="15d1181c-3470-47bb-97fd-9bd5c6582806" InformativeScreenshot="445ba41e0a950f967951b52808a7a36d" Selector="&lt;webctrl id='GlobalWrapper' tag='IFRAME' /&gt;&lt;webctrl id='frameContent' tag='FRAME' /&gt;&lt;webctrl id='frMain' tag='IFRAME' /&gt;&lt;webctrl tag='LI' visibleinnertext='General Adult Exam' /&gt;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:Click.Target>
+              </ui:Click>
+            </Sequence>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1005.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Start Patient PE General Adult Exam updation &quot;]" />
+            <Sequence DisplayName="General Adult Exam Sequence" sap:VirtualizedContainerService.HintSize="1005.6,2954.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="PE_Constituional_Workflow.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="943.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="PE_Constituional_Workflow.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Constitutional">[in_PE_Constitutional]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Constituitonal_GeneralAppearence">[in_PE_Constitutional_GeneralApearence]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Constituitonal_LevelOfDistress">[in_PE_Constitutional_Levelofdistress]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Constituitonal_Ambulation">[in_PE_Constitutional_Ambulation]</InArgument>
+                  <InArgument x:TypeArguments="ui:Browser" x:Key="in_BrowserObject">[in_BrowserObject]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="PE_Head_Workflow.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="943.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_23" UnSafe="False" WorkflowFileName="PE_Head_Workflow.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Head">[in_PE_Head]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Head_head">[in_PE_Head_Head]</InArgument>
+                  <InArgument x:TypeArguments="ui:Browser" x:Key="in_BrowserObject">[in_BrowserObject]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="PE_Eyes_Workflow.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="943.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_28" UnSafe="False" WorkflowFileName="PE_Eyes_Workflow.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Eyes" />
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Eyes_lids" />
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Eyes_Pupils" />
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Eyes_Cornea" />
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Eyes_Fundoscopic" />
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Eyes_EOM" />
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Eyes_lens" />
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Eyes_Sclerae" />
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Eyes_Vision" />
+                  <InArgument x:TypeArguments="ui:Browser" x:Key="in_BrowserObject" />
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="PE_ENMT_Workflow.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="943.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_27" UnSafe="False" WorkflowFileName="PE_ENMT_Workflow.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_ENMT">[in_PE_ENMT]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_ENMT_Ears">[in_PE_ENMT_Ears]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_ENMT_Heering">[in_PE_ENMT_Heering]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_ENMT_Nose">[in_PE_ENMT_Nose]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_ENMT_Lips">[in_PE_ENMT_Lips]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_ENMT_Oropharynx">[in_PE_ENMT_Oropharynx]</InArgument>
+                  <InArgument x:TypeArguments="ui:Browser" x:Key="in_BrowserObject">[in_BrowserObject]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="PE_PSYCH_Workflow.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="943.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="PE_PSYCH_Workflow.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_PSYCH">[in_PE_PSYCH]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_PSYCH_Insight">[in_PE_PSYCH_Insight]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_PSYCH_Mental_Status">[in_Psych_MentalStatus]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_PSYCH_Orientation">[in_Psych_Orientation]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_PSYCH_Memory">[in_Psych_Memory]</InArgument>
+                  <InArgument x:TypeArguments="ui:Browser" x:Key="in_BrowserObject">[in_BrowserObject]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="PE_Neck_Workflow.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="943.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="PE_Neck_Workflow.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Neck">[in_Neck]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Neck_Neck">[in_Neck_Neck]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Neck_LymphNotes">[in_Neck_LymphNotes]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Neck_thyroid">[in_Neck_Thyroid]</InArgument>
+                  <InArgument x:TypeArguments="ui:Browser" x:Key="in_BrowserObject">[in_BrowserObject]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="PE_Lungs_Workflow.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="943.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_24" UnSafe="False" WorkflowFileName="PE_Lungs_Workflow.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="ui:Browser" x:Key="in_BrowserObject">[in_BrowserObject]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Lungs">[in_PE_Lungs]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Lungs_Respi">[in_PE_Lungs_Respi]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Lungs_Percussion">[in_PE_Lungs_Percussion]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Lungs_Ausculation">[in_PE_Lungs_Auscultation]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="PE_Respiratory_Workflow.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="943.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_20" UnSafe="False" WorkflowFileName="PE_Respiratory_Workflow.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_Respiratory">[in_Respiratory]</InArgument>
+                  <InArgument x:TypeArguments="ui:Browser" x:Key="in_BrowserObject">[in_BrowserObject]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="PE_Cardiovascular.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="943.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" UnSafe="False" WorkflowFileName="PE_Cardiovascular.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Cardiovascular">[in_Cardiovascular]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Cardiovascular_ApicalImpulse">[in_Cardiovascular_ApicalImpulse]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Cardiovascular_heart">[in_Cardiovascular_Heart]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Cardiovascular_NeckVessels">[in_Cardiovascular_Neck]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Cardiovascular_Pulses">[in_Cardiovascular_Pulses]</InArgument>
+                  <InArgument x:TypeArguments="ui:Browser" x:Key="in_BrowserObject">[in_BrowserObject]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="PE_Abdomen_Workflow.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="943.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_14" UnSafe="False" WorkflowFileName="PE_Abdomen_Workflow.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_Abdomen">[in_Abdomen]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_Abdomen_BowelSound">[in_Abdomen_Bowel]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_Abdomen_Inspection">[in_Abdomen_Inspection]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_Abdomen_Liver">[in_Abdomen_Liver]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_Abdomen_Spleen">[in_Abdomen_Spleen]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_Abdomen_Hernia">[in_Abdomen_Hernia]</InArgument>
+                  <InArgument x:TypeArguments="ui:Browser" x:Key="in_BrowserObject">[in_BrowserObject]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_RUQ">[in_Abdomen_Bowel_RUQ]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_RLQ">[in_Abdomen_Bowel_RLQ]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_LUQ">[in_Abdomen_Bowel_LUQ]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_LLQ">[in_Abdomen_Bowel_LLQ]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <If Condition="[in_Gender=&quot;M&quot;]" sap:VirtualizedContainerService.HintSize="943.2,538.4" sap2010:WorkflowViewState.IdRef="If_1">
+                <If.Then>
+                  <Sequence sap:VirtualizedContainerService.HintSize="449.6,225.6" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="PE_FemaleGU_MaleGU.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="387.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_15" UnSafe="False" WorkflowFileName="PE_FemaleGU_MaleGU.xaml">
+                      <ui:InvokeWorkflowFile.Arguments>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_PE_MF_GU">[in_MaleFemale_GU]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_PE_MF_GU_Exam">[in_MaleFemale_GUExam]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_PE_MF_GU_Penis">[in_MaleFemale_Penis]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_PE_MF_GU_Scrotum">[in_MaleFemale_Scrotum]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_PE_MF_GU_Testes">[in_MaleFemale_Testes]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_PE_MF_GU_Prostate">[in_MaleFemale_Prostate]</InArgument>
+                        <InArgument x:TypeArguments="ui:Browser" x:Key="in_BrowserObject">[in_BrowserObject]</InArgument>
+                      </ui:InvokeWorkflowFile.Arguments>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:InvokeWorkflowFile>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence sap:VirtualizedContainerService.HintSize="449.6,379.2" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="PE_Breast_Workflow.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="387.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_25" UnSafe="False" WorkflowFileName="PE_Breast_Workflow.xaml">
+                      <ui:InvokeWorkflowFile.Arguments>
+                        <InArgument x:TypeArguments="ui:Browser" x:Key="in_BrowserObject">[in_BrowserObject]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_Breast">[in_Breast]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_Breast_Breast">[in_Breast_Breast]</InArgument>
+                      </ui:InvokeWorkflowFile.Arguments>
+                    </ui:InvokeWorkflowFile>
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="PE_GU_Female_Workflow.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="387.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_22" UnSafe="False" WorkflowFileName="PE_GU_Female_Workflow.xaml">
+                      <ui:InvokeWorkflowFile.Arguments>
+                        <InArgument x:TypeArguments="ui:Browser" x:Key="in_BrowserObject">[in_BrowserObject]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_PE_GU_Female">[in_PE_GUFemale]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_PE_GUFemale_External">[in_PE_GUFemale_External]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_PE_GUFemale_Vagina">[in_PE_GUFemaleVagina]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_PE_GUFemale_Cervix">[in_GUFemale_Cervix]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_PE_GUFemale_Utreus">[in_PE_GUFemale_Utreus]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_PE_GUFemale_Adnexae">[in_PE_GUFemale_Adnexae]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_PE_GUFemale_Bladder">[in_PE_GUFemale_Bladder]</InArgument>
+                      </ui:InvokeWorkflowFile.Arguments>
+                    </ui:InvokeWorkflowFile>
+                  </Sequence>
+                </If.Else>
+              </If>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="PE_Rectal_Workflow.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="943.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_26" UnSafe="False" WorkflowFileName="PE_Rectal_Workflow.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="ui:Browser" x:Key="in_BrowserObject">[in_BrowserObject]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_Rectal">[in_Rectal]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_Rectal_Rectal">[in_Rectal_Rectal]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="PE_ExtremetiesMusculo_Workflow.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="943.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_16" UnSafe="False" WorkflowFileName="PE_ExtremetiesMusculo_Workflow.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Musculo">[in_Musculo]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Musculo_MotorStrength">[in_Musculo_Motor]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Musculo_JointsBoneMuscle">[in_Musculo_Joints]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_MusculoExtremeties">[in_Musculo_Extremeties]</InArgument>
+                  <InArgument x:TypeArguments="ui:Browser" x:Key="in_BrowserObject">[in_BrowserObject]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="PE_Neuro_Workflow.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="943.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_17" UnSafe="False" WorkflowFileName="PE_Neuro_Workflow.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Neuro">[in_Neuro]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Neuro_Gait">[in_Neuro_gait]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Neuro_CranialNerve">[in_Neuro_Cranial]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Neuro_Sensation">[in_Neuro_Sensation]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Neuro_Reflexes">[in_Neuro_Reflexes]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Neuro_Coordination">[in_Neuro_Coordination]</InArgument>
+                  <InArgument x:TypeArguments="ui:Browser" x:Key="in_BrowserObject">[in_BrowserObject]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="PE_SKIN_Workflow.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="943.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_19" UnSafe="False" WorkflowFileName="PE_SKIN_Workflow.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_SKIN">[in_Skin]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_SKIN_Inspection">[in_Skin_Inspection]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_SKIN_Nails">[in_Skin_Nails]</InArgument>
+                  <InArgument x:TypeArguments="ui:Browser" x:Key="in_BrowserObject">[in_BrowserObject]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="PE_Back_Workflow.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="943.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_21" UnSafe="False" WorkflowFileName="PE_Back_Workflow.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Back">[in_Back]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_PE_Back_Tappearence">[in_Back_Tharo]</InArgument>
+                  <InArgument x:TypeArguments="ui:Browser" x:Key="in_BrowserObject">[in_BrowserObject]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+            </Sequence>
+          </Sequence>
+        </ActivityAction>
+      </ui:BrowserScope.Body>
+    </ui:BrowserScope>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1101.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Successfully Updated Patient Physical Exam&quot;]" />
+  </Sequence>
+</Activity>

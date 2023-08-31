@@ -1,0 +1,1098 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Update_Followup_VisitChart" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_HPI" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Constitutional" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Constitutional_GeneralAppearnce" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Constitutional_LevelofDistress" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Constitutional_Ambulation" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_PSYCH" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_PSYCH_Insight" Type="InArgument(x:String)" />
+    <x:Property Name="in_Jarr_AP" Type="InArgument(njl:JArray)" />
+    <x:Property Name="in_PatientVisit" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Psych_MentalStatus" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Psych_Orientation" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Psych_Memory" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Neck" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Neck_Neck" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Neck_LymphNotes" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Neck_Thyroid" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Cardio" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Cardio_ApicalImpulse" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Cardio_Heart" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Cardio_Neck" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Cardio_Pulses" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Respiratory" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Abdomen" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Abdomen_BowelSound" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Abdomen_Inspection" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Abdomen_Liver" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Abdomen_Spleen" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Abdomen_Hernia" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Abdomen_Bowel_RUQ" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Abdomen_Bowel_RLQ" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Abdomen_Bowel_LLQ" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Abdomen_Bowel_LUQ" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_MaleFemaleGU" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_MaleFemale_GUExam" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_MaleFemaleGU_Penis" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_MaleFemaleGU_Scrotum" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_MaleFemaleGU_Testes" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_MaleFemaleGU_Prostate" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Musculo" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Musculo_Motor" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Musculo_Joints" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Musculo_Extremeties" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_SKin" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_SKin_Inspection" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_SKin_Nails" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Back" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Back_Tharo" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Neuro" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Neuro_Gait" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Neuro_Cranial" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Neuro_Sensation" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Neuro_Reflexes" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Neuro_Coordination" Type="InArgument(x:String)" />
+    <x:Property Name="in_ROS_Constitutional" Type="InArgument(x:String)" />
+    <x:Property Name="in_Ros_ENMT" Type="InArgument(x:String)" />
+    <x:Property Name="in_Ros_ENMT_Ears" Type="InArgument(x:String)" />
+    <x:Property Name="in_Ros_ENMT_Mouth" Type="InArgument(x:String)" />
+    <x:Property Name="in_Ros_ENMT_Nose" Type="InArgument(x:String)" />
+    <x:Property Name="in_Ros_Cardiovascular" Type="InArgument(x:String)" />
+    <x:Property Name="in_Ros_Cardio_Cardio" Type="InArgument(x:String)" />
+    <x:Property Name="in_ROS_Respiratory" Type="InArgument(x:String)" />
+    <x:Property Name="in_ROS_Respi_Respi" Type="InArgument(x:String)" />
+    <x:Property Name="in_Gastrointestinal" Type="InArgument(x:String)" />
+    <x:Property Name="in_Gastrointestinal_Gastro" Type="InArgument(x:String)" />
+    <x:Property Name="in_Musculoskeletal" Type="InArgument(x:String)" />
+    <x:Property Name="in_Musculoskeletal_Musculo" Type="InArgument(x:String)" />
+    <x:Property Name="in_ROS_Neuro" Type="InArgument(x:String)" />
+    <x:Property Name="in_ROS_Neuro_Neuro" Type="InArgument(x:String)" />
+    <x:Property Name="in_ROS_GU" Type="InArgument(x:String)" />
+    <x:Property Name="in_ROS_GU_GU" Type="InArgument(x:String)" />
+    <x:Property Name="in_ROS_Skin" Type="InArgument(x:String)" />
+    <x:Property Name="in_ROS_Skin_Skin" Type="InArgument(x:String)" />
+    <x:Property Name="in_ROS_Psych_Psych" Type="InArgument(x:String)" />
+    <x:Property Name="in_ROS_Psych" Type="InArgument(x:String)" />
+    <x:Property Name="in_ROS_Consti_Consti" Type="InArgument(x:String)" />
+    <x:Property Name="in_BrowserObject" Type="InArgument(ui:Browser)" />
+    <x:Property Name="in_Gender" Type="InArgument(x:String)" />
+    <x:Property Name="in_Pe_GUFemale" Type="InArgument(x:String)" />
+    <x:Property Name="in_Pe_GUFemale_External" Type="InArgument(x:String)" />
+    <x:Property Name="in_Pe_GUFemale_Vagina" Type="InArgument(x:String)" />
+    <x:Property Name="in_Pe_GUFemale_Cervix" Type="InArgument(x:String)" />
+    <x:Property Name="in_Pe_GUFemale_Utreus" Type="InArgument(x:String)" />
+    <x:Property Name="in_Pe_GUFemale_Adnexae" Type="InArgument(x:String)" />
+    <x:Property Name="in_Pe_GUFemale_Bladder" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Head" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Head_Head" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Lungs" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Lungs_Respi" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Lungs_Percussion" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Lungs_Auscultation" Type="InArgument(x:String)" />
+    <x:Property Name="in_Breast" Type="InArgument(x:String)" />
+    <x:Property Name="in_Breast_Breast" Type="InArgument(x:String)" />
+    <x:Property Name="in_Rectal" Type="InArgument(x:String)" />
+    <x:Property Name="in_Rectal_Rectal" Type="InArgument(x:String)" />
+    <x:Property Name="in_ICDDT" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_PE_ENMT" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_ENMT_Ears" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_ENMT_Nose" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_ENMT_Lips" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_ENMT_Orophaynx" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_ENMT_Heering" Type="InArgument(x:String)" />
+    <x:Property Name="in_ROS_Eyes" Type="InArgument(x:String)" />
+    <x:Property Name="in_ROS_Eyes_eyes" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Eyes" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Eyes_Lids" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Eyes_Pupils" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Eyes_Cornea" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Eyes_Fundoscopic" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Eyes_EOM" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Eyes_Lens" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Eyes_Sclrae" Type="InArgument(x:String)" />
+    <x:Property Name="in_PE_Eyes_vision" Type="InArgument(x:String)" />
+  </x:Members>
+  <this:Update_Followup_VisitChart.in_HPI>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_HPI>
+  <this:Update_Followup_VisitChart.in_PE_Constitutional>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_PE_Constitutional>
+  <this:Update_Followup_VisitChart.in_PE_Constitutional_GeneralAppearnce>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_PE_Constitutional_GeneralAppearnce>
+  <this:Update_Followup_VisitChart.in_PE_Constitutional_LevelofDistress>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_PE_Constitutional_LevelofDistress>
+  <this:Update_Followup_VisitChart.in_PE_Constitutional_Ambulation>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_PE_Constitutional_Ambulation>
+  <this:Update_Followup_VisitChart.in_PE_PSYCH>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_PE_PSYCH>
+  <this:Update_Followup_VisitChart.in_PE_PSYCH_Insight>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_PE_PSYCH_Insight>
+  <this:Update_Followup_VisitChart.in_Jarr_AP>
+    <InArgument x:TypeArguments="njl:JArray" />
+  </this:Update_Followup_VisitChart.in_Jarr_AP>
+  <this:Update_Followup_VisitChart.in_Ros_ENMT>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_Ros_ENMT>
+  <this:Update_Followup_VisitChart.in_Ros_ENMT_Ears>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_Ros_ENMT_Ears>
+  <this:Update_Followup_VisitChart.in_Ros_ENMT_Mouth>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_Ros_ENMT_Mouth>
+  <this:Update_Followup_VisitChart.in_Ros_ENMT_Nose>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_Ros_ENMT_Nose>
+  <this:Update_Followup_VisitChart.in_Ros_Cardiovascular>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_Ros_Cardiovascular>
+  <this:Update_Followup_VisitChart.in_Ros_Cardio_Cardio>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_Ros_Cardio_Cardio>
+  <this:Update_Followup_VisitChart.in_ROS_Respiratory>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_ROS_Respiratory>
+  <this:Update_Followup_VisitChart.in_ROS_Respi_Respi>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_ROS_Respi_Respi>
+  <this:Update_Followup_VisitChart.in_Gastrointestinal>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_Gastrointestinal>
+  <this:Update_Followup_VisitChart.in_Gastrointestinal_Gastro>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_Gastrointestinal_Gastro>
+  <this:Update_Followup_VisitChart.in_Musculoskeletal>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_Musculoskeletal>
+  <this:Update_Followup_VisitChart.in_Musculoskeletal_Musculo>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_Musculoskeletal_Musculo>
+  <this:Update_Followup_VisitChart.in_ROS_Neuro>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_ROS_Neuro>
+  <this:Update_Followup_VisitChart.in_ROS_Neuro_Neuro>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_ROS_Neuro_Neuro>
+  <this:Update_Followup_VisitChart.in_ROS_GU>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_ROS_GU>
+  <this:Update_Followup_VisitChart.in_ROS_GU_GU>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_ROS_GU_GU>
+  <this:Update_Followup_VisitChart.in_ROS_Skin>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_ROS_Skin>
+  <this:Update_Followup_VisitChart.in_ROS_Skin_Skin>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_ROS_Skin_Skin>
+  <this:Update_Followup_VisitChart.in_ROS_Psych_Psych>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_ROS_Psych_Psych>
+  <this:Update_Followup_VisitChart.in_ROS_Psych>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_ROS_Psych>
+  <this:Update_Followup_VisitChart.in_ROS_Consti_Consti>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_ROS_Consti_Consti>
+  <this:Update_Followup_VisitChart.in_Gender>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_Gender>
+  <this:Update_Followup_VisitChart.in_Pe_GUFemale>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_Pe_GUFemale>
+  <this:Update_Followup_VisitChart.in_Pe_GUFemale_External>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_Pe_GUFemale_External>
+  <this:Update_Followup_VisitChart.in_Pe_GUFemale_Vagina>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_Pe_GUFemale_Vagina>
+  <this:Update_Followup_VisitChart.in_Pe_GUFemale_Cervix>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_Pe_GUFemale_Cervix>
+  <this:Update_Followup_VisitChart.in_Pe_GUFemale_Utreus>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_Pe_GUFemale_Utreus>
+  <this:Update_Followup_VisitChart.in_Pe_GUFemale_Adnexae>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_Pe_GUFemale_Adnexae>
+  <this:Update_Followup_VisitChart.in_Pe_GUFemale_Bladder>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_Pe_GUFemale_Bladder>
+  <this:Update_Followup_VisitChart.in_PE_Head>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_PE_Head>
+  <this:Update_Followup_VisitChart.in_PE_Head_Head>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_PE_Head_Head>
+  <this:Update_Followup_VisitChart.in_PE_Lungs>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_PE_Lungs>
+  <this:Update_Followup_VisitChart.in_PE_Lungs_Respi>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_PE_Lungs_Respi>
+  <this:Update_Followup_VisitChart.in_PE_Lungs_Percussion>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_PE_Lungs_Percussion>
+  <this:Update_Followup_VisitChart.in_PE_Lungs_Auscultation>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_PE_Lungs_Auscultation>
+  <this:Update_Followup_VisitChart.in_Breast>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_Breast>
+  <this:Update_Followup_VisitChart.in_Breast_Breast>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_Breast_Breast>
+  <this:Update_Followup_VisitChart.in_Rectal>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_Rectal>
+  <this:Update_Followup_VisitChart.in_Rectal_Rectal>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_Rectal_Rectal>
+  <this:Update_Followup_VisitChart.in_ROS_Eyes>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_ROS_Eyes>
+  <this:Update_Followup_VisitChart.in_ROS_Eyes_eyes>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_ROS_Eyes_eyes>
+  <this:Update_Followup_VisitChart.in_PE_Eyes>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_PE_Eyes>
+  <this:Update_Followup_VisitChart.in_PE_Eyes_Lids>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_PE_Eyes_Lids>
+  <this:Update_Followup_VisitChart.in_PE_Eyes_Pupils>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_PE_Eyes_Pupils>
+  <this:Update_Followup_VisitChart.in_PE_Eyes_Cornea>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_PE_Eyes_Cornea>
+  <this:Update_Followup_VisitChart.in_PE_Eyes_Fundoscopic>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_PE_Eyes_Fundoscopic>
+  <this:Update_Followup_VisitChart.in_PE_Eyes_EOM>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_PE_Eyes_EOM>
+  <this:Update_Followup_VisitChart.in_PE_Eyes_Lens>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_PE_Eyes_Lens>
+  <this:Update_Followup_VisitChart.in_PE_Eyes_Sclrae>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_PE_Eyes_Sclrae>
+  <this:Update_Followup_VisitChart.in_PE_Eyes_vision>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Update_Followup_VisitChart.in_PE_Eyes_vision>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1091.2,3138.4</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Update_Followup_VisitChart_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Data.Entity</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Cryptography</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Update_Followup_VisitChart" sap:VirtualizedContainerService.HintSize="1101.6,3073.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1039.2,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Start Preping Patient chart&quot;]" />
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[in_BrowserObject]" BrowserType="Chrome" DisplayName="Attach Browser ' Go to Prep Exam '" sap:VirtualizedContainerService.HintSize="1039.2,2001.6" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="882ae25cfe6ac792f3349406373531ac">
+      <ui:BrowserScope.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Follow Up HPI" sap:VirtualizedContainerService.HintSize="1005.6,1854.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" AlterIfDisabled="True" ClickType="CLICK_SINGLE" DisplayName="Click 'Go To Exam Prep'" sap:VirtualizedContainerService.HintSize="943.2,107.2" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="4ecaef3a-a194-48a6-825f-edf45b6da06b" InformativeScreenshot="414657b916ce63c3579d6579a0f70c9d" Selector="&lt;webctrl id='GlobalWrapper' tag='IFRAME' /&gt;&lt;webctrl id='frameContent' tag='FRAME' /&gt;&lt;webctrl id='frMain' tag='IFRAME' /&gt;&lt;webctrl aaname='*Go to Exam Prep ' tag='BUTTON' type='button' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:Click.Target>
+            </ui:Click>
+            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" AlterIfDisabled="True" ClickType="CLICK_SINGLE" DisplayName="Click 'HPI'" sap:VirtualizedContainerService.HintSize="943.2,107.2" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="1f6e59da-fe04-429e-835f-f074c0ca8c49" InformativeScreenshot="99297d1917135e8230a98d4080d7b9d6" Selector="&lt;webctrl id='GlobalWrapper' tag='IFRAME' /&gt;&lt;webctrl id='frameContent' tag='FRAME' /&gt;&lt;webctrl id='frMain' tag='IFRAME' /&gt;&lt;webctrl parentid='page-container' parentname='HPI' tag='SPAN' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:Click.Target>
+            </ui:Click>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="943.2,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Adding HPI Note for follow up visit&quot;]" />
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" sap:VirtualizedContainerService.HintSize="943.2,86.4" sap2010:WorkflowViewState.IdRef="Click_11" KeyModifiers="None" MouseButton="BTN_LEFT">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="af2247a4-d727-4906-b667-b3d3f68dd0f0" Selector="&lt;webctrl id='GlobalWrapper' tag='IFRAME' /&gt;&lt;webctrl id='frameContent' tag='FRAME' /&gt;&lt;webctrl id='frMain' tag='IFRAME' /&gt;&lt;webctrl parentid='uta-hpi-section-level-note' tag='DIV' parentclass='uta_c_editor__slate-editor uta_c_editor__slate-editor--dictation-nuance' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:Click.Target>
+            </ui:Click>
+            <ui:SetToClipboard DisplayName="Set To Clipboard" sap:VirtualizedContainerService.HintSize="943.2,60" sap2010:WorkflowViewState.IdRef="SetToClipboard_1" Text="[Split(in_HPI,&quot;:&quot;)(1).Trim]" />
+            <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SpecialKey="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="943.2,133.6" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="v" KeyModifiers="Ctrl">
+              <ui:SendHotkey.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="a810e2f6-70e5-4501-bdf8-854d9133bd97">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:SendHotkey.Target>
+            </ui:SendHotkey>
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="943.2,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_4">
+              <ui:CommentOut.Body>
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,247.2" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'Add HPI Note'" EmptyField="True" sap:VirtualizedContainerService.HintSize="387.2,135.2" sap2010:WorkflowViewState.IdRef="TypeInto_2" Text="[Split(in_HPI,&quot;:&quot;)(1).Trim]">
+                    <ui:TypeInto.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="1b7ecc77-6768-4c57-b893-3e3f7984609a" InformativeScreenshot="7b829797b711aab448d71927c768f850" Selector="&lt;webctrl id='GlobalWrapper' tag='IFRAME' /&gt;&lt;webctrl id='frameContent' tag='FRAME' /&gt;&lt;webctrl id='frMain' tag='IFRAME' /&gt;&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' parentid='uta-hpi-section-level-note' tag='DIV' /&gt;">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                        <ui:Target.WaitForReady>
+                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                        </ui:Target.WaitForReady>
+                      </ui:Target>
+                    </ui:TypeInto.Target>
+                  </ui:TypeInto>
+                </Sequence>
+              </ui:CommentOut.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:CommentOut>
+            <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="943.2,24.8" sap2010:WorkflowViewState.IdRef="Delay_2" />
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'H3'" sap:VirtualizedContainerService.HintSize="943.2,107.2" sap2010:WorkflowViewState.IdRef="Click_10" KeyModifiers="None" MouseButton="BTN_LEFT">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b836254d-a74d-418b-8303-5e3bc694803e" InformativeScreenshot="4b279133003d484235174b36cb884eb7" Selector="&lt;webctrl id='GlobalWrapper' tag='IFRAME' /&gt;&lt;webctrl id='frameContent' tag='FRAME' /&gt;&lt;webctrl id='frMain' tag='IFRAME' /&gt;&lt;webctrl name='HPI' tag='H3' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:Click.Target>
+            </ui:Click>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="943.2,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;HPI Note Added Successfully&quot;]" />
+            <If Condition="[in_PatientVisit.ToLower.Trim.Equals(&quot;colonoscopy&quot;)]" DisplayName="If ROS Colonoscopy" sap:VirtualizedContainerService.HintSize="943.2,384.8" sap2010:WorkflowViewState.IdRef="If_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="449.6,225.6" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Patient_ROS_Workflow.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="387.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Patient_ROS_Workflow.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_ROS_Option">
+                        <Literal x:TypeArguments="x:String">general adult ros</Literal>
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Constitutional">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_ROS_Constitutional" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_ENMT">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Ros_ENMT" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_ENMT_Ears">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Ros_ENMT_Ears" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_ENMT_Mouth">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Ros_ENMT_Mouth" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_ENMT_Nose">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Ros_ENMT_Nose" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Cardiovascular">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Ros_Cardiovascular" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Cardio_Cardio">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Ros_Cardio_Cardio" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Respiratory">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_ROS_Respiratory" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Respiratory_Respi">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_ROS_Respi_Respi" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Gastrointestinal">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Gastrointestinal" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Gastrointestinal_Gastro">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Gastrointestinal_Gastro" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Musculo">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Musculoskeletal" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Musculo_Musculo">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Musculoskeletal_Musculo" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Neuro">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_ROS_Neuro" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Neuro_Neuro">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_ROS_Neuro_Neuro" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_GU">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_ROS_GU" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_GU_GU">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_ROS_GU_GU" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Skin">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_ROS_Skin" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_SKin_Skin">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_ROS_Skin_Skin" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Psych_Psych">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_ROS_Psych_Psych" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Psych">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_ROS_Psych" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_consti_consti">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_ROS_Consti_Consti" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="ui:Browser" x:Key="in_BrowserObject">
+                        <mva:VisualBasicValue x:TypeArguments="ui:Browser" ExpressionText="in_BrowserObject" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_ROS_eyes">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_ROS_Eyes" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_ROS_eyes_eyes">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_ROS_Eyes_eyes" />
+                      </InArgument>
+                    </ui:InvokeWorkflowFile.Arguments>
+                  </ui:InvokeWorkflowFile>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="449.6,83.2" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" AlterIfDisabled="True" ClickType="CLICK_SINGLE" DisplayName="Click 'ROS as noted in the HPI'" sap:VirtualizedContainerService.HintSize="387.2,107.2" sap2010:WorkflowViewState.IdRef="Click_12" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
+                    <ui:Click.CursorPosition>
+                      <ui:CursorPosition Position="Center">
+                        <ui:CursorPosition.OffsetX>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetX>
+                        <ui:CursorPosition.OffsetY>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetY>
+                      </ui:CursorPosition>
+                    </ui:Click.CursorPosition>
+                    <ui:Click.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="35db50bf-0bcf-4798-a534-34b988ab04ab" InformativeScreenshot="b104395d8530d9c38bbbb3af88d9dc4d" Selector="&lt;webctrl id='GlobalWrapper' tag='IFRAME' /&gt;&lt;webctrl id='frameContent' tag='FRAME' /&gt;&lt;webctrl id='frMain' tag='IFRAME' /&gt;&lt;webctrl parentname='HPI' tag='SPAN' aaname='ROS as noted in the HPI' /&gt;">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                        <ui:Target.WaitForReady>
+                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                        </ui:Target.WaitForReady>
+                      </ui:Target>
+                    </ui:Click.Target>
+                  </ui:Click>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="387.2,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Ros is noted in the HPI&quot;]" />
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="943.2,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_6">
+              <ui:CommentOut.Body>
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="559.2,288" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Sequence sap:VirtualizedContainerService.HintSize="496.8,83.2" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" AlterIfDisabled="True" ClickType="CLICK_SINGLE" DisplayName="Click 'ROS as noted in the HPI'" sap:VirtualizedContainerService.HintSize="387.2,107.2" sap2010:WorkflowViewState.IdRef="Click_13" KeyModifiers="None" MouseButton="BTN_LEFT">
+                      <ui:Click.CursorPosition>
+                        <ui:CursorPosition Position="Center">
+                          <ui:CursorPosition.OffsetX>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetX>
+                          <ui:CursorPosition.OffsetY>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetY>
+                        </ui:CursorPosition>
+                      </ui:Click.CursorPosition>
+                      <ui:Click.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="35db50bf-0bcf-4798-a534-34b988ab04ab" InformativeScreenshot="b104395d8530d9c38bbbb3af88d9dc4d" Selector="&lt;webctrl id='GlobalWrapper' tag='IFRAME' /&gt;&lt;webctrl id='frameContent' tag='FRAME' /&gt;&lt;webctrl id='frMain' tag='IFRAME' /&gt;&lt;webctrl class='checkbox-label-text' parentid='page-container' parentname='HPI' tag='SPAN' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:Click.Target>
+                    </ui:Click>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="387.2,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Ros is noted in the HPI&quot;]" />
+                  </Sequence>
+                  <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[If(in_PatientVisit.ToLower.Contains(&quot;colonoscopy&quot;),&quot;colonoscopy&quot;,&quot;Default&quot;)]" sap:VirtualizedContainerService.HintSize="496.8,52.8" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" x:Key="&quot;colonoscopy&quot;" DisplayName="Patient_ROS_Workflow.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Patient_ROS_Workflow.xaml">
+                      <ui:InvokeWorkflowFile.Arguments>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_ROS_Option">general adult ros</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_Constitutional">[in_ROS_Constitutional]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_ENMT">[in_Ros_ENMT]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_ENMT_Ears">[in_Ros_ENMT_Ears]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_ENMT_Mouth">[in_Ros_ENMT_Mouth]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_ENMT_Nose">[in_Ros_ENMT_Nose]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_Cardiovascular">[in_Ros_Cardiovascular]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_Cardio_Cardio">[in_Ros_Cardio_Cardio]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_Respiratory">[in_ROS_Respiratory]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_Respiratory_Respi">[in_ROS_Respi_Respi]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_Gastrointestinal">[in_Gastrointestinal]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_Gastrointestinal_Gastro">[in_Gastrointestinal_Gastro]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_Musculo">[in_Musculoskeletal]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_Musculo_Musculo">[in_Musculoskeletal_Musculo]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_Neuro">[in_ROS_Neuro]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_Neuro_Neuro">[in_ROS_Neuro_Neuro]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_GU">[in_ROS_GU]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_GU_GU">[in_ROS_GU_GU]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_Skin">[in_ROS_Skin]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_SKin_Skin">[in_ROS_Skin_Skin]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_Psych_Psych">[in_ROS_Psych_Psych]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_Psych">[in_ROS_Psych]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_consti_consti">[in_ROS_Consti_Consti]</InArgument>
+                        <InArgument x:TypeArguments="ui:Browser" x:Key="in_BrowserObject">[in_BrowserObject]</InArgument>
+                      </ui:InvokeWorkflowFile.Arguments>
+                    </ui:InvokeWorkflowFile>
+                  </Switch>
+                </Sequence>
+              </ui:CommentOut.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:CommentOut>
+          </Sequence>
+        </ActivityAction>
+      </ui:BrowserScope.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:BrowserScope>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="UpdateChart_PE.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="1039.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="UpdateChart_PE.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_Constitutional">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Constitutional" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_Constitutional_GeneralApearence">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Constitutional_GeneralAppearnce" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_Constitutional_Levelofdistress">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Constitutional_LevelofDistress" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_Constitutional_Ambulation">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Constitutional_Ambulation" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_PSYCH">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_PSYCH" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_PSYCH_Insight">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_PSYCH_Insight" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Neck">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Neck" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Neck_Neck">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Neck_Neck" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Neck_LymphNotes">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Neck_LymphNotes" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Neck_Thyroid">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Neck_Thyroid" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Cardiovascular">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Cardio" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Cardiovascular_ApicalImpulse">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Cardio_ApicalImpulse" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Cardiovascular_Heart">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Cardio_Heart" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_CardioVascular_Neck">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Cardio_Neck" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Cardiovascular_Pulses">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Cardio_Pulses" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Respiratory">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Respiratory" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Abdomen">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Abdomen" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Abdomen_Bowel">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Abdomen_BowelSound" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Abdomen_Bowel_RUQ">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Abdomen_Bowel_RUQ" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Abdomen_Bowel_RLQ">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Abdomen_Bowel_RLQ" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Abdomen_Bowel_LLQ">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Abdomen_Bowel_LLQ" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Abdomen_Bowel_LUQ">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Abdomen_Bowel_LUQ" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Abdomen_Inspection">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Abdomen_Inspection" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Abdomen_Liver">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Abdomen_Liver" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Abdomen_Spleen">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Abdomen_Spleen" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Abdomen_Hernia">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Abdomen_Hernia" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_MaleFemale_GU">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_MaleFemaleGU" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_MaleFemale_GUExam">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_MaleFemale_GUExam" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_MaleFemale_Penis">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_MaleFemaleGU_Penis" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_MaleFemale_Scrotum">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_MaleFemaleGU_Scrotum" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_MaleFemale_Testes">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_MaleFemaleGU_Testes" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_MaleFemale_Prostate">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_MaleFemaleGU_Prostate" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Musculo">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Musculo" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Musculo_Motor">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Musculo_Motor" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Musculo_Joints">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Musculo_Joints" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Musculo_Extremeties">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Musculo_Extremeties" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Skin">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_SKin" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Skin_Nails">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_SKin_Nails" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Skin_Inspection">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_SKin_Inspection" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Back">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Back" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Back_Tharo">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Back_Tharo" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Neuro">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Neuro" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Neuro_gait">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Neuro_Gait" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Neuro_Cranial">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Neuro_Cranial" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Neuro_Sensation">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Neuro_Sensation" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Neuro_Reflexes">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Neuro_Reflexes" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Neuro_Coordination">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Neuro_Coordination" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Psych_MentalStatus">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Psych_MentalStatus" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Psych_Orientation">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Psych_Orientation" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Psych_Memory">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Psych_Memory" />
+        </InArgument>
+        <InArgument x:TypeArguments="ui:Browser" x:Key="in_BrowserObject">
+          <mva:VisualBasicValue x:TypeArguments="ui:Browser" ExpressionText="in_BrowserObject" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Gender">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Gender" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_GUFemale">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Pe_GUFemale" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_GUFemale_External">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Pe_GUFemale_External" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_GUFemaleVagina">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Pe_GUFemale_Vagina" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_GUFemale_Cervix">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Pe_GUFemale_Cervix" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_GUFemale_Utreus">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Pe_GUFemale_Utreus" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_GUFemale_Adnexae">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Pe_GUFemale_Adnexae" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_GUFemale_Bladder">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Pe_GUFemale_Bladder" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_Head">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Head" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_Head_Head">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Head_Head" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_Lungs">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Lungs" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_Lungs_Respi">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Lungs_Respi" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_Lungs_Percussion">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Lungs_Percussion" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_Lungs_Auscultation">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Lungs_Auscultation" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Breast">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Breast" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Breast_Breast">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Breast_Breast" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Rectal">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Rectal" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Rectal_Rectal">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Rectal_Rectal" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_ENMT">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_ENMT" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_ENMT_Ears">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_ENMT_Ears" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_ENMT_Nose">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_ENMT_Nose" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_ENMT_Lips">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_ENMT_Lips" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_ENMT_Heering">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_ENMT_Heering" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_ENMT_Oropharynx">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_ENMT_Orophaynx" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_Eyes">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Eyes" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_Eyes_Lids">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Eyes_Lids" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_Eyes_Cornea">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Eyes_Cornea" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_Eyes_Pupils">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Eyes_Pupils" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_Eyes_Fundoscopic">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Eyes_Fundoscopic" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_Eyes_EOM">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Eyes_EOM" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_Eyes_Lens">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Eyes_Lens" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_Eyes_Sclrae">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Eyes_Sclrae" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_PE_Eyes_Vision">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_PE_Eyes_vision" />
+        </InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Update_Patient_chart_AP.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="1039.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Update_Patient_chart_AP.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="njl:JArray" x:Key="in_Jarray_Diagnoses">[in_Jarr_AP]</InArgument>
+        <InArgument x:TypeArguments="ui:Browser" x:Key="in_BrowserObject">[in_BrowserObject]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_ICDDT">[in_ICDDT]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click  Sign Off" sap:VirtualizedContainerService.HintSize="1039.2,107.2" sap2010:WorkflowViewState.IdRef="Click_5" KeyModifiers="None" MouseButton="BTN_LEFT">
+      <ui:Click.CursorPosition>
+        <ui:CursorPosition Position="Center">
+          <ui:CursorPosition.OffsetX>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetX>
+          <ui:CursorPosition.OffsetY>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetY>
+        </ui:CursorPosition>
+      </ui:Click.CursorPosition>
+      <ui:Click.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="648cee14-56f6-4d5e-b110-ab82548c95a6" InformativeScreenshot="ccb3034cab66af0c3c4fb6b47c5aa158" Selector="&lt;html app='chrome.exe' title='athenaCollector*' /&gt;&lt;webctrl id='GlobalWrapper' tag='IFRAME' /&gt;&lt;webctrl id='frameContent' tag='FRAME' /&gt;&lt;webctrl id='frMain' tag='IFRAME' /&gt;&lt;webctrl parentid='page-container' parentname='Sign-off' tag='SPAN' /&gt;">
+          <ui:Target.TimeoutMS>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:Target.TimeoutMS>
+          <ui:Target.WaitForReady>
+            <InArgument x:TypeArguments="ui:WaitForReady" />
+          </ui:Target.WaitForReady>
+        </ui:Target>
+      </ui:Click.Target>
+    </ui:Click>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="387.2,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_5">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,219.2" sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click  Documented by scribe" sap:VirtualizedContainerService.HintSize="387.2,107.2" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT">
+            <ui:Click.CursorPosition>
+              <ui:CursorPosition Position="Center">
+                <ui:CursorPosition.OffsetX>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetX>
+                <ui:CursorPosition.OffsetY>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetY>
+              </ui:CursorPosition>
+            </ui:Click.CursorPosition>
+            <ui:Click.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="56a41c95-bdb9-41e9-ba36-4de4f12d2600" InformativeScreenshot="98a09b01752c8ba7efb5f385ec8f92e1" Selector="&lt;html app='chrome.exe' title='athenaCollector*' /&gt;&lt;webctrl id='GlobalWrapper' tag='IFRAME' /&gt;&lt;webctrl id='frameContent' tag='FRAME' /&gt;&lt;webctrl id='frMain' tag='IFRAME' /&gt;&lt;webctrl class='checkbox-label-text' parentid='page-container' parentname='Sign-off' tag='SPAN' /&gt;">
+                <ui:Target.TimeoutMS>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:Target.TimeoutMS>
+                <ui:Target.WaitForReady>
+                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                </ui:Target.WaitForReady>
+              </ui:Target>
+            </ui:Click.Target>
+          </ui:Click>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click  Done Prppeing" sap:VirtualizedContainerService.HintSize="387.2,107.2" sap2010:WorkflowViewState.IdRef="Click_7" KeyModifiers="None" MouseButton="BTN_LEFT">
+      <ui:Click.CursorPosition>
+        <ui:CursorPosition Position="Center">
+          <ui:CursorPosition.OffsetX>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetX>
+          <ui:CursorPosition.OffsetY>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetY>
+        </ui:CursorPosition>
+      </ui:Click.CursorPosition>
+      <ui:Click.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="6f79795e-f713-4f0d-8277-4811a4083069" InformativeScreenshot="99dab4247b2be96acb2a37abc6a9aebe" Selector="&lt;html app='chrome.exe' title='athenaCollector*' /&gt;&lt;webctrl id='GlobalWrapper' tag='IFRAME' /&gt;&lt;webctrl id='frameContent' tag='FRAME' /&gt;&lt;webctrl id='frMain' tag='IFRAME' /&gt;&lt;webctrl parentname='exam' tag='BUTTON' type='button' visibleinnertext='Done with Prep' /&gt;">
+          <ui:Target.TimeoutMS>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:Target.TimeoutMS>
+          <ui:Target.WaitForReady>
+            <InArgument x:TypeArguments="ui:WaitForReady" />
+          </ui:Target.WaitForReady>
+        </ui:Target>
+      </ui:Click.Target>
+    </ui:Click>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="387.2,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Preping Completed for the Patient&quot;]" />
+  </Sequence>
+</Activity>
